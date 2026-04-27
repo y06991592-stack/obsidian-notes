@@ -192,9 +192,19 @@
               "icon": "message-square",
               "title": "Copilot"
             }
+          },
+          {
+            "id": "cd16309d94cf3c75",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
@@ -218,10 +228,11 @@
       "pkmer:Open Pkmer Market": false
     }
   },
-  "active": "f6f87309ad47d9f5",
+  "active": "76ac292873f7d9a3",
   "lastOpenFiles": [
-    "未命名.md",
+    "数学练习卷_10以内加减法.md",
     "测试.md",
+    "未命名.md",
     "自然拼读/牛津自然拼读第三册完整教案.md",
     "大果油麻藤：像小鸟的禾雀花.md",
     "自然拼读/牛津自然拼读第三册综合测试题.md",
@@ -232,7 +243,6 @@
     "Pasted image 20260421151342.png",
     "Pasted image 20260421151216.png",
     "Templates/100以内加减法模板.md",
-    "数学练习卷_10以内加减法.md",
     "欢迎.md",
     "数学练习卷_10以内加减法.html",
     "自然拼读/or 自然拼读练习题.md",
