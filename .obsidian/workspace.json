@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试2.md",
+                "file": "测试.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "测试2"
+              "title": "测试"
             }
           }
         ]
@@ -230,8 +230,9 @@
   },
   "active": "b0958298c11c7963",
   "lastOpenFiles": [
-    "测试.md",
     "测试2.md",
+    "测试.md",
+    "测试.md",
     "数学练习卷_10以内加减法.md",
     "未命名.md",
     "自然拼读/牛津自然拼读第三册完整教案.md",
@@ -262,7 +263,6 @@
     "u_e 自然拼读练习题.html",
     "o_e 自然拼读练习题.html",
     "精益与造船融合分析.md",
-    "创建链接.md",
     "copilot/copilot-conversations",
     "copilot/copilot-custom-prompts",
     "copilot"
