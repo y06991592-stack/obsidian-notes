@@ -1,0 +1,15 @@
+{
+  "selectedBackground": "backgrounds/castlebg-1.png",
+  "pets": [
+    {
+      "id": "pets/white-cat-1",
+      "type": "pets/white-cat",
+      "name": "白白"
+    }
+  ],
+  "nextPetIdCounters": {
+    "pets/white-cat": 2
+  },
+  "overlayMode": false,
+  "indexedFiles": {}
+}

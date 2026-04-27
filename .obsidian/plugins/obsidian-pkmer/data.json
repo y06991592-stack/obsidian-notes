@@ -1,0 +1,14 @@
+{
+  "token": "",
+  "refreshToken": "",
+  "auth": {
+    "tokenExpiresAt": 0,
+    "userInfo": null,
+    "pendingOAuthSession": {
+      "state": "d5688435f62b542a4371ec5b37901d73",
+      "verifier": "ZesTyqU_OKxxYPq6FNilpS8T_lg6GsW60PB8KkNnIio",
+      "redirectUri": "http://localhost:10892/pkmer-obsidian/callback",
+      "createdAt": 1777255647098
+    }
+  }
+}

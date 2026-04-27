@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学小练习 - 10以内加减法</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'ZCOOL KuaiLe', 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe4f3 50%, #e4f0ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #5a4a6a;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(150, 100, 180, 0.2);
+            border: 4px solid #ffd9e8;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #ff6b9d;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #9b8ab8;
+            margin-bottom: 30px;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #fff9e6, #fff);
+            border-radius: 20px;
+            padding: 22px 25px;
+            margin-bottom: 25px;
+            border: 3px dashed #ffd280;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            font-size: 1.25em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item input {
+            border: none;
+            border-bottom: 3px dotted #dda0dd;
+            font-family: inherit;
+            font-size: 1em;
+            padding: 4px 8px;
+            width: 150px;
+            background: transparent;
+            color: #5a4a6a;
+        }
+
+        .sticker-section {
+            background: linear-gradient(135deg, #fff0f5, #ffe4f3);
+            border-radius: 20px;
+            padding: 18px 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 3px solid #ffb6c1;
+        }
+
+        .sticker-section h3 {
+            color: #ff6b9d;
+            font-size: 1.35em;
+            margin-bottom: 12px;
+        }
+
+        .sticker-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sticker-placeholder {
+            width: 55px;
+            height: 55px;
+            border: 3px dashed #ffb6c1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            background: white;
+        }
+
+        .section { margin-bottom: 30px; }
+
+        .section-title {
+            background: linear-gradient(135deg, #ff9a9e, #ffecd2);
+            color: #d35400;
+            padding: 12px 22px;
+            border-radius: 20px;
+            font-size: 1.35em;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-score {
+            margin-left: auto;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* ===== 横式题 ===== */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .problem {
+            background: #fff;
+            border-radius: 15px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #e8e0f0;
+        }
+
+        .problem-num {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            color: #d35400;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 0.95em;
+        }
+
+        .problem-text {
+            font-size: 1.45em;
+            color: #5a4a6a;
+            flex: 1;
+        }
+
+        .problem-answer {
+            border: none;
+            border-bottom: 3px solid #dda0dd;
+            font-family: inherit;
+            font-size: 1.3em;
+            width: 45px;
+            text-align: center;
+            padding: 3px;
+            background: transparent;
+            color: #5a4a6a;
+        }
+
+        .problem-emoji {
+            font-size: 1.4em;
+            flex-shrink: 0;
+        }
+
+        /* ===== 标准竖式 ===== */
+        .vertical-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid #e8e0f0;
+        }
+
+        .vertical-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: flex-start;
+        }
+
+        .v-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 75px;
+        }
+
+        .v-label {
+            font-size: 0.8em;
+            color: #b8a9c9;
+            margin-bottom: 4px;
+        }
+
+        .v-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0;
+        }
+
+        .v-top {
+            font-size: 2.1em;
+            color: #5a4a6a;
+            line-height: 1.1;
+            padding-right: 4px;
+        }
+
+        .v-op {
+            font-size: 1.6em;
+            color: #ff6b9d;
+            line-height: 1;
+            padding-right: 4px;
+            width: 100%;
+            text-align: right;
+        }
+
+        .v-line {
+            width: 100%;
+            border-bottom: 4px solid #5a4a6a;
+        }
+
+        .v-ans {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 42px;
+            padding-right: 4px;
+        }
+
+        .v-ans input {
+            border: none;
+            border-bottom: 3px solid #dda0dd;
+            font-family: inherit;
+            font-size: 1.6em;
+            width: 52px;
+            text-align: center;
+            padding: 2px 4px;
+            background: transparent;
+            color: #5a4a6a;
+        }
+
+        /* ===== 鼓励区 ===== */
+        .congrats-section {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: 25px;
+            padding: 28px;
+            text-align: center;
+            margin-top: 30px;
+            border: 4px solid #ffb6c1;
+        }
+
+        .congrats-title {
+            font-size: 2em;
+            color: #ff6b9d;
+            margin-bottom: 12px;
+        }
+
+        .final-score {
+            font-size: 1.5em;
+            color: #d35400;
+            margin: 12px 0;
+        }
+
+        .final-score input {
+            border: none;
+            border-bottom: 3px solid #ff6b9d;
+            font-family: inherit;
+            font-size: 1em;
+            width: 65px;
+            text-align: center;
+            padding: 3px;
+            background: transparent;
+            color: #d35400;
+        }
+
+        .encourage {
+            font-size: 1.25em;
+            color: #9b59b6;
+            margin-top: 10px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 28px;
+            color: #b8a9c9;
+            font-size: 1em;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; padding: 20px 25px; }
+            .v-ans input, .problem-answer { border-bottom-color: #999; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 数学小练习 🌟</h1>
+        <p class="subtitle">10以内加减法 · 适合5岁小朋友</p>
+
+        <div class="info-section">
+            <div class="info-row">
+                <div class="info-item">📝 姓名：<input type="text" placeholder="请填写姓名"></div>
+                <div class="info-item">📅 日期：<input type="text" placeholder="____年__月__日"></div>
+                <div class="info-item">⭐ 得分：<input type="text" placeholder="___"> / 100</div>
+            </div>
+        </div>
+
+        <div class="sticker-section">
+            <h3>🎉 完成啦！贴贴纸时间！🎉</h3>
+            <div class="sticker-box">
+                <div class="sticker-placeholder">⭐</div>
+                <div class="sticker-placeholder">🌟</div>
+                <div class="sticker-placeholder">🏆</div>
+                <div class="sticker-placeholder">💖</div>
+                <div class="sticker-placeholder">🎀</div>
+            </div>
+        </div>
+
+        <!-- 第一部分：加法横式 -->
+        <div class="section">
+            <div class="section-title">
+                🌈 第一部分：10以内加法（横式）
+                <span class="section-score">答对 _____ 题（共5题）</span>
+            </div>
+            <div class="problems-grid">
+                <div class="problem">
+                    <span class="problem-num">1</span>
+                    <span class="problem-text">3 + 4 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐱</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">2</span>
+                    <span class="problem-text">2 + 5 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐶</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">3</span>
+                    <span class="problem-text">1 + 7 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐰</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">4</span>
+                    <span class="problem-text">6 + 3 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐻</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">5</span>
+                    <span class="problem-text">4 + 4 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🦊</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二部分：减法横式 -->
+        <div class="section">
+            <div class="section-title">
+                🌈 第二部分：10以内减法（横式）
+                <span class="section-score">答对 _____ 题（共5题）</span>
+            </div>
+            <div class="problems-grid">
+                <div class="problem">
+                    <span class="problem-num">1</span>
+                    <span class="problem-text">8 − 3 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐼</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">2</span>
+                    <span class="problem-text">9 − 4 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐨</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">3</span>
+                    <span class="problem-text">7 − 2 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🦁</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">4</span>
+                    <span class="problem-text">10 − 5 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐸</span>
+                </div>
+                <div class="problem">
+                    <span class="problem-num">5</span>
+                    <span class="problem-text">6 − 1 =</span>
+                    <input type="text" class="problem-answer">
+                    <span class="problem-emoji">🐷</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三部分：加法竖式 -->
+        <div class="section">
+            <div class="section-title">
+                🌈 第三部分：10以内加法（竖式）
+                <span class="section-score">答对 _____ 题（共10题）</span>
+            </div>
+            <div class="vertical-section">
+                <div class="vertical-grid">
+                    <!-- 第1-10题 加法竖式 -->
+                    <div class="v-item">
+                        <div class="v-label">第1题</div>
+                        <div class="v-box">
+                            <div class="v-top">2</div>
+                            <div class="v-op">+ 3</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第2题</div>
+                        <div class="v-box">
+                            <div class="v-top">5</div>
+                            <div class="v-op">+ 4</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第3题</div>
+                        <div class="v-box">
+                            <div class="v-top">3</div>
+                            <div class="v-op">+ 6</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第4题</div>
+                        <div class="v-box">
+                            <div class="v-top">1</div>
+                            <div class="v-op">+ 7</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第5题</div>
+                        <div class="v-box">
+                            <div class="v-top">6</div>
+                            <div class="v-op">+ 2</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第6题</div>
+                        <div class="v-box">
+                            <div class="v-top">4</div>
+                            <div class="v-op">+ 5</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第7题</div>
+                        <div class="v-box">
+                            <div class="v-top">7</div>
+                            <div class="v-op">+ 2</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第8题</div>
+                        <div class="v-box">
+                            <div class="v-top">2</div>
+                            <div class="v-op">+ 6</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第9题</div>
+                        <div class="v-box">
+                            <div class="v-top">5</div>
+                            <div class="v-op">+ 3</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第10题</div>
+                        <div class="v-box">
+                            <div class="v-top">8</div>
+                            <div class="v-op">+ 1</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四部分：减法竖式 -->
+        <div class="section">
+            <div class="section-title">
+                🌈 第四部分：10以内减法（竖式）
+                <span class="section-score">答对 _____ 题（共10题）</span>
+            </div>
+            <div class="vertical-section">
+                <div class="vertical-grid">
+                    <!-- 第1-10题 减法竖式 -->
+                    <div class="v-item">
+                        <div class="v-label">第1题</div>
+                        <div class="v-box">
+                            <div class="v-top">9</div>
+                            <div class="v-op">− 3</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第2题</div>
+                        <div class="v-box">
+                            <div class="v-top">8</div>
+                            <div class="v-op">− 4</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第3题</div>
+                        <div class="v-box">
+                            <div class="v-top">7</div>
+                            <div class="v-op">− 2</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第4题</div>
+                        <div class="v-box">
+                            <div class="v-top">10</div>
+                            <div class="v-op">− 5</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第5题</div>
+                        <div class="v-box">
+                            <div class="v-top">9</div>
+                            <div class="v-op">− 6</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第6题</div>
+                        <div class="v-box">
+                            <div class="v-top">8</div>
+                            <div class="v-op">− 5</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第7题</div>
+                        <div class="v-box">
+                            <div class="v-top">6</div>
+                            <div class="v-op">− 1</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第8题</div>
+                        <div class="v-box">
+                            <div class="v-top">9</div>
+                            <div class="v-op">− 3</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第9题</div>
+                        <div class="v-box">
+                            <div class="v-top">7</div>
+                            <div class="v-op">− 4</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                    <div class="v-item">
+                        <div class="v-label">第10题</div>
+                        <div class="v-box">
+                            <div class="v-top">10</div>
+                            <div class="v-op">− 7</div>
+                            <div class="v-line"></div>
+                        </div>
+                        <div class="v-ans"><input type="text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="congrats-section">
+            <div class="congrats-title">🎉 写完啦！太棒了！🎉</div>
+            <div class="final-score">总得分：<input type="text" placeholder="___"> / 100</div>
+            <div class="encourage">
+                🌈 做得很棒！继续加油哦！🌈<br>
+                ⭐ 你最厉害！继续保持！⭐
+            </div>
+        </div>
+
+        <div class="footer">🌻 小飞的数学小练习 · 加油小朋友！</div>
+    </div>
+</body>
+</html>

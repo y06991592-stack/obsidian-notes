@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 岁儿童学习打卡系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #F1F8E9;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        
+        .week-selector button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .week-selector button:hover {
+            background: #388E3C;
+            transform: scale(1.05);
+        }
+        
+        .week-selector span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #388E3C;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .day-card {
+            background: linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #BBDEFB;
+        }
+        
+        .day-card.completed {
+            background: linear-gradient(135deg, #C8E6C9 0%, #DCEDC8 100%);
+            border-color: #8BC34A;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .day-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1976D2;
+        }
+        
+        .day-card.completed .day-title {
+            color: #388E3C;
+        }
+        
+        .star-display {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .star {
+            width: 30px;
+            height: 30px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+        
+        .star:hover {
+            transform: scale(1.2);
+        }
+        
+        .tasks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .task-group {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .task-group h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-group h4 .icon {
+            font-size: 18px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #E0E0E0;
+        }
+        
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #4CAF50;
+        }
+        
+        .task-item label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+        }
+        
+        .task-item.completed label {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .week-summary {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFECB3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #FFC107;
+        }
+        
+        .week-summary h3 {
+            color: #F57C00;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .summary-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .summary-item .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .summary-item .label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .reward-section {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid #BA68C8;
+        }
+        
+        .reward-section h3 {
+            color: #7B1FA2;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .reward-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .reward-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        
+        .reward-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            accent-color: #BA68C8;
+        }
+        
+        .reward-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f44336 0%, #e91e63 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(244, 67, 54, 0.4);
+        }
+        
+        .notes-area {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #E0E0E0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .tasks {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 5 岁儿童学习打卡系统</h1>
+            <p>每天进步一点点，积累成就大梦想！</p>
+        </div>
+        
+        <div class="week-selector">
+            <button onclick="changeWeek(-1)">◀ 上周</button>
+            <span id="currentWeek">第 1 周</span>
+            <button onclick="changeWeek(1)">下周 ▶</button>
+        </div>
+        
+        <div class="content" id="content">
+            <!-- 动态生成内容 -->
+        </div>
+        
+        <div class="week-summary">
+            <h3>📊 本周学习统计</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="number" id="totalStars">0</div>
+                    <div class="label">获得星星 ⭐</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number" id="completedDays">0</div>
+                    <div class="label">完成天数</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number" id="totalTasks">0</div>
+                    <div class="label">完成任务数</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number" id="completionRate">0%</div>
+                    <div class="label">完成率</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%;">0%</div>
+            </div>
+        </div>
+        
+        <div class="reward-section">
+            <h3>🎁 本周奖励目标</h3>
+            <div class="reward-item">
+                <input type="checkbox" id="reward1">
+                <label for="reward1">5 颗⭐ - 周末看英文动画片 📺</label>
+            </div>
+            <div class="reward-item">
+                <input type="checkbox" id="reward2">
+                <label for="reward2">5 颗⭐ - 周末去公园玩 🌳</label>
+            </div>
+            <div class="reward-item">
+                <input type="checkbox" id="reward3">
+                <label for="reward3">全勤奖励 - 小礼物 🎁</label>
+            </div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetWeek()">🔄 重置本周数据</button>
+    </div>
+
+    <script>
+        const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+        
+        const tasks = {
+            '周一': [
+                { group: '早晨磨耳朵', icon: '🎧', items: ['RAZ 音频'] },
+                { group: '上午主课', icon: '📖', items: ['自然拼读 o_e'] },
+                { group: '下午学习', icon: '✏️', items: ['四五快读'] },
+                { group: '晚上学习', icon: '📚', items: ['RAZ 共读', '练字'] }
+            ],
+            '周二': [
+                { group: '早晨磨耳朵', icon: '🎧', items: ['RAZ 音频'] },
+                { group: '上午主课', icon: '📖', items: ['自然拼读 o_e'] },
+                { group: '下午学习', icon: '🔢', items: ['四五快算'] },
+                { group: '晚上学习', icon: '📚', items: ['RAZ 共读', '练字'] }
+            ],
+            '周三': [
+                { group: '早晨磨耳朵', icon: '🎧', items: ['RAZ 音频'] },
+                { group: '上午主课', icon: '📖', items: ['自然拼读 u_e'] },
+                { group: '下午学习', icon: '✏️', items: ['四五快读'] },
+                { group: '晚上学习', icon: '📚', items: ['RAZ 共读', '练字'] }
+            ],
+            '周四': [
+                { group: '早晨磨耳朵', icon: '🎧', items: ['RAZ 音频'] },
+                { group: '上午主课', icon: '📖', items: ['自然拼读 u_e'] },
+                { group: '下午学习', icon: '🔢', items: ['四五快算'] },
+                { group: '晚上学习', icon: '📚', items: ['RAZ 共读', '练字'] }
+            ],
+            '周五': [
+                { group: '早晨磨耳朵', icon: '🎧', items: ['RAZ 音频'] },
+                { group: '上午主课', icon: '📖', items: ['自然拼读 复习'] },
+                { group: '下午学习', icon: '✏️', items: ['四五快读'] },
+                { group: '晚上学习', icon: '📚', items: ['RAZ 共读', '练字'] }
+            ],
+            '周六': [
+                { group: '早晨磨耳朵', icon: '🎵', items: ['英文儿歌'] },
+                { group: '上午主课', icon: '🎮', items: ['Playway 3'] },
+                { group: '下午学习', icon: '📕', items: ['中文绘本'] },
+                { group: '晚上学习', icon: '📺', items: ['英文绘本', '英文动画'] }
+            ],
+            '周日': [
+                { group: '休息日', icon: '😴', items: ['自由活动', '户外玩耍'] }
+            ]
+        };
+
+        let currentWeekNum = 1;
+        let weekData = {};
+
+        function initWeekData() {
+            const savedData = localStorage.getItem('studyTracker_week' + currentWeekNum);
+            if (savedData) {
+                weekData = JSON.parse(savedData);
+            } else {
+                weekData = {};
+                days.forEach(day => {
+                    weekData[day] = {
+                        tasks: {},
+                        stars: 0
+                    };
+                    tasks[day].forEach(group => {
+                        group.items.forEach(item => {
+                            weekData[day].tasks[item] = false;
+                        });
+                    });
+                });
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('studyTracker_week' + currentWeekNum, JSON.stringify(weekData));
+        }
+
+        function changeWeek(delta) {
+            currentWeekNum += delta;
+            if (currentWeekNum < 1) currentWeekNum = 1;
+            document.getElementById('currentWeek').textContent = '第 ' + currentWeekNum + ' 周';
+            initWeekData();
+            renderContent();
+            updateSummary();
+        }
+
+        function toggleTask(day, taskName) {
+            weekData[day].tasks[taskName] = !weekData[day].tasks[taskName];
+            checkDayCompletion(day);
+            saveData();
+            updateSummary();
+        }
+
+        function checkDayCompletion(day) {
+            const allTasks = Object.values(weekData[day].tasks);
+            const completedTasks = allTasks.filter(v => v).length;
+            const totalTasks = allTasks.length;
+            
+            const completionRate = completedTasks / totalTasks;
+            if (completionRate >= 0.75) {
+                weekData[day].stars = 4;
+            } else if (completionRate >= 0.5) {
+                weekData[day].stars = 2;
+            } else if (completionRate > 0) {
+                weekData[day].stars = 1;
+            } else {
+                weekData[day].stars = 0;
+            }
+            saveData();
+        }
+
+        function setStars(day, stars) {
+            weekData[day].stars = stars;
+            saveData();
+            updateSummary();
+        }
+
+        function renderContent() {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            days.forEach(day => {
+                const dayData = weekData[day];
+                const isCompleted = dayData.stars >= 4;
+                
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card' + (isCompleted ? ' completed' : '');
+                
+                let tasksHTML = '';
+                tasks[day].forEach(group => {
+                    let taskItemsHTML = '';
+                    group.items.forEach(item => {
+                        const isChecked = dayData.tasks[item] ? 'checked' : '';
+                        const completedClass = dayData.tasks[item] ? 'completed' : '';
+                        taskItemsHTML += `
+                            <div class="task-item ${completedClass}">
+                                <input type="checkbox" id="${day}_${item}" ${isChecked} 
+                                       onchange="toggleTask('${day}', '${item}')">
+                                <label for="${day}_${item}">${item}</label>
+                            </div>
+                        `;
+                    });
+                    
+                    tasksHTML += `
+                        <div class="task-group">
+                            <h4><span class="icon">${group.icon}</span> ${group.group}</h4>
+                            ${taskItemsHTML}
+                        </div>
+                    `;
+                });
+
+                let starsHTML = '';
+                for (let i = 1; i <= 4; i++) {
+                    const starChar = i <= dayData.stars ? '⭐' : '☆';
+                    starsHTML += `<span class="star" onclick="setStars('${day}', ${i})">${starChar}</span>`;
+                }
+
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <span class="day-title">${day}</span>
+                        <div class="star-display">${starsHTML}</div>
+                    </div>
+                    <div class="tasks">${tasksHTML}</div>
+                `;
+                
+                content.appendChild(dayCard);
+            });
+        }
+
+        function updateSummary() {
+            let totalStars = 0;
+            let completedDays = 0;
+            let totalCompletedTasks = 0;
+            let totalTasksCount = 0;
+
+            days.forEach(day => {
+                totalStars += weekData[day].stars;
+                if (weekData[day].stars >= 4) completedDays++;
+                
+                Object.values(weekData[day].tasks).forEach(completed => {
+                    if (completed) totalCompletedTasks++;
+                });
+                totalTasksCount += Object.keys(weekData[day].tasks).length;
+            });
+
+            const completionRate = totalTasksCount > 0 
+                ? Math.round((totalCompletedTasks / totalTasksCount) * 100) 
+                : 0;
+
+            document.getElementById('totalStars').textContent = totalStars;
+            document.getElementById('completedDays').textContent = completedDays;
+            document.getElementById('totalTasks').textContent = totalCompletedTasks;
+            document.getElementById('completionRate').textContent = completionRate + '%';
+            document.getElementById('progressBar').style.width = completionRate + '%';
+            document.getElementById('progressBar').textContent = completionRate + '%';
+        }
+
+        function resetWeek() {
+            if (confirm('确定要重置本周所有数据吗？此操作不可恢复！')) {
+                weekData = {};
+                days.forEach(day => {
+                    weekData[day] = {
+                        tasks: {},
+                        stars: 0
+                    };
+                    tasks[day].forEach(group => {
+                        group.items.forEach(item => {
+                            weekData[day].tasks[item] = false;
+                        });
+                    });
+                });
+                saveData();
+                renderContent();
+                updateSummary();
+            }
+        }
+
+        // 初始化
+        initWeekData();
+        renderContent();
+        updateSummary();
+    </script>
+</body>
+</html>

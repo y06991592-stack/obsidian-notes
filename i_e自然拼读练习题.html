@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i_e 自然拼读练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Comic Sans MS", "Microsoft YaHei", sans-serif;
+            background-color: #fff;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: #ffe6f0;
+            border-radius: 20px;
+            padding: 30px;
+            border: 3px solid #ffb3d9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff66b2;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #ff99cc;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 2px dashed #ff99cc;
+        }
+
+        h2 {
+            color: #ff80bf;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .emoji-icon {
+            font-size: 40px;
+            display: inline-block;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        .matching-game {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .matching-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .matching-item {
+            background-color: #fff5f9;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 2px solid #ffd9ec;
+            text-align: center;
+            font-size: 28px;
+            min-width: 100px;
+        }
+
+        .matching-item.word {
+            font-size: 20px;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+
+        .fill-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .fill-table td {
+            background-color: #fff5f9;
+            padding: 12px;
+            border-top: 2px solid #ffd9ec;
+            border-bottom: 2px solid #ffd9ec;
+        }
+
+        .fill-table td:first-child {
+            border-left: 2px solid #ffd9ec;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .fill-table td:last-child {
+            border-right: 2px solid #ffd9ec;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .blank {
+            display: inline-block;
+            width: 30px;
+            border-bottom: 2px solid #ff66b2;
+            margin: 0 3px;
+            text-align: center;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+
+        .circle-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .circle-item {
+            background-color: #fff5f9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ffd9ec;
+            text-align: center;
+        }
+
+        .circle-emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .word-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            font-size: 18px;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+
+        .circle-option {
+            background-color: #ffe6f0;
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: 2px solid #ffb3d9;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffd6e8 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border: 3px solid #ff99cc;
+        }
+
+        .tip-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d966b2;
+        }
+
+        .phonics-highlight {
+            background-color: #ffb3d9;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 20px;
+            color: #ff66b2;
+        }
+
+        .cute-face {
+            display: inline-block;
+            font-size: 24px;
+            margin: 0 8px;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                background-color: #ffe6f0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .section, .tip-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 i_e 自然拼读练习 🌸</h1>
+        <p class="subtitle">👧 小朋友，一起来学习有趣的 i_e 发音吧！✨</p>
+
+        <!-- 第一题：连线题 -->
+        <div class="section">
+            <h2>
+                <span class="cute-face">🎀</span>
+                第一题：图片单词连线
+                <span class="cute-face">🎀</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #ff80bf;">
+                把左边的图片和右边的单词连起来吧！(๑&gt;ᴗ&lt;๑)
+            </p>
+            <div class="matching-game">
+                <div class="matching-column">
+                    <div class="matching-item">✋</div>
+                    <div class="matching-item">9️⃣</div>
+                    <div class="matching-item">🏊</div>
+                    <div class="matching-item">🪁</div>
+                    <div class="matching-item">🚲</div>
+                </div>
+                <div class="matching-column">
+                    <div class="matching-item word">five</div>
+                    <div class="matching-item word">nine</div>
+                    <div class="matching-item word">dive</div>
+                    <div class="matching-item word">kite</div>
+                    <div class="matching-item word">bike</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二题：填空拼写 -->
+        <div class="section">
+            <h2>
+                <span class="cute-face">🌺</span>
+                第二题：填空拼写
+                <span class="cute-face">🌺</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #ff80bf;">
+                在横线上填上正确的字母吧！(◕ᴗ◕✿)
+            </p>
+            <table class="fill-table">
+                <tr>
+                    <td>
+                        <span class="emoji-icon">✋</span>
+                        f<span class="blank"></span>v<span class="blank"></span>（五）
+                    </td>
+                    <td style="text-align: center; color: #ff66b2; font-weight: bold;">
+                        f <span style="font-size: 24px;">i</span> v <span style="font-size: 24px;">e</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="emoji-icon">🏊</span>
+                        d<span class="blank"></span>v<span class="blank"></span>（跳水）
+                    </td>
+                    <td style="text-align: center; color: #ff66b2; font-weight: bold;">
+                        d <span style="font-size: 24px;">i</span> v <span style="font-size: 24px;">e</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="emoji-icon">🎂</span>
+                        n<span class="blank"></span>n<span class="blank"></span>（九）
+                    </td>
+                    <td style="text-align: center; color: #ff66b2; font-weight: bold;">
+                        n <span style="font-size: 24px;">i</span> n <span style="font-size: 24px;">e</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="emoji-icon">📏</span>
+                        b<span class="blank"></span>k<span class="blank"></span>（自行车）
+                    </td>
+                    <td style="text-align: center; color: #ff66b2; font-weight: bold;">
+                        b <span style="font-size: 24px;">i</span> k <span style="font-size: 24px;">e</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="emoji-icon">🪁</span>
+                        k<span class="blank"></span>t<span class="blank"></span>（风筝）
+                    </td>
+                    <td style="text-align: center; color: #ff66b2; font-weight: bold;">
+                        k <span style="font-size: 24px;">i</span> t <span style="font-size: 24px;">e</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第三题：圈出正确单词 -->
+        <div class="section">
+            <h2>
+                <span class="cute-face">🌟</span>
+                第三题：圈出正确的单词
+                <span class="cute-face">🌟</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #ff80bf;">
+                看图片，圈出正确的单词哦！(๑˃̵ᴗ˂̵)و
+            </p>
+            <div class="circle-words">
+                <div class="circle-item">
+                    <div class="circle-emoji">🐟</div>
+                    <div class="word-options">
+                        <div class="circle-option">five</div>
+                        <div class="circle-option">fine</div>
+                    </div>
+                </div>
+                <div class="circle-item">
+                    <div class="circle-emoji">✋</div>
+                    <div class="word-options">
+                        <div class="circle-option">file</div>
+                        <div class="circle-option">five</div>
+                    </div>
+                </div>
+                <div class="circle-item">
+                    <div class="circle-emoji">🎂</div>
+                    <div class="word-options">
+                        <div class="circle-option">nine</div>
+                        <div class="circle-option">kite</div>
+                    </div>
+                </div>
+                <div class="circle-item">
+                    <div class="circle-emoji">🕘</div>
+                    <div class="word-options">
+                        <div class="circle-option">dive</div>
+                        <div class="circle-option">nine</div>
+                    </div>
+                </div>
+                <div class="circle-item">
+                    <div class="circle-emoji">🚲</div>
+                    <div class="word-options">
+                        <div class="circle-option">bike</div>
+                        <div class="circle-option">five</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 小贴士 -->
+        <div class="tip-box">
+            <h2>
+                <span class="cute-face">🎈</span>
+                小贴士
+                <span class="cute-face">🎈</span>
+            </h2>
+            <div class="tip-content">
+                <strong>💡 i_e 的发音规则：</strong><br><br>
+                当单词里是 <span class="phonics-highlight">i _ _ e</span> 的形式时，<br>
+                <span class="phonics-highlight">i</span> 通常发自己的名字音 <strong>/aɪ/</strong> （像说"爱"）<br><br>
+                <strong>例如：</strong>f<span class="phonics-highlight">i</span>v<span class="phonics-highlight">e</span> → /faɪv/ 🎵
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="cute-face">👍</span>
+            做得真棒！给自己一个大大的赞吧！
+            <span class="cute-face">💖</span>
+        </div>
+    </div>
+</body>
+</html>

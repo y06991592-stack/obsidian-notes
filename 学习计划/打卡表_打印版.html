@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 岁儿童学习打卡表 - 打印版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .week-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .week-table th {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 8px;
+            border: 2px solid #388E3C;
+            font-size: 14px;
+        }
+        
+        .week-table td {
+            border: 2px solid #388E3C;
+            padding: 10px 8px;
+            text-align: center;
+            font-size: 13px;
+            height: 80px;
+            vertical-align: top;
+        }
+        
+        .week-table tr:nth-child(even) {
+            background: #F1F8E9;
+        }
+        
+        .week-table tr:nth-child(odd) {
+            background: #fff;
+        }
+        
+        .task-item {
+            display: block;
+            margin: 3px 0;
+            font-size: 12px;
+        }
+        
+        .checkbox {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #333;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .section-title {
+            background: #8BC34A;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            border-radius: 5px;
+        }
+        
+        .daily-check {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .daily-check th, .daily-check td {
+            border: 2px solid #388E3C;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .daily-check th {
+            background: #8BC34A;
+            color: white;
+        }
+        
+        .daily-check td:first-child {
+            background: #F1F8E9;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .star-box {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #FFC107;
+            display: inline-block;
+            margin: 2px;
+        }
+        
+        .notes {
+            border: 2px dashed #4CAF50;
+            padding: 15px;
+            margin-top: 20px;
+            background: #F9FBE7;
+        }
+        
+        .notes h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .notes textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: inherit;
+        }
+        
+        .print-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .print-btn:hover {
+            background: #388E3C;
+        }
+        
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border: 1px solid #333;
+        }
+        
+        .color-english { background: #E3F2FD; }
+        .color-chinese { background: #FFF3E0; }
+        .color-math { background: #F3E5F5; }
+        .color-reading { background: #E8F5E9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 5 岁儿童学习打卡表</h1>
+            <p>姓名：______________ &nbsp;&nbsp;&nbsp; 周次：第 ____ 周 &nbsp;&nbsp;&nbsp; 日期：____月____日 - ____月____日</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color color-english"></div>
+                <span>英语</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-chinese"></div>
+                <span>语文</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-math"></div>
+                <span>数学</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-reading"></div>
+                <span>阅读</span>
+            </div>
+        </div>
+        
+        <h2 class="section-title">📅 一周学习总览</h2>
+        <table class="week-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">时间</th>
+                    <th style="width: 15%;">周一</th>
+                    <th style="width: 15%;">周二</th>
+                    <th style="width: 15%;">周三</th>
+                    <th style="width: 15%;">周四</th>
+                    <th style="width: 15%;">周五</th>
+                    <th style="width: 15%;">周六</th>
+                    <th style="width: 15%;">周日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>早晨</strong><br>磨耳朵<br>15 分钟</td>
+                    <td>
+                        <span class="task-item">☐ RAZ 音频</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 音频</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 音频</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 音频</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 音频</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 英文儿歌</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 休息</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>上午</strong><br>主课学习<br>30 分钟</td>
+                    <td>
+                        <span class="task-item">☐ 自然拼读</span>
+                        <span class="task-item" style="color:#666;font-size:11px;">o_e</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 自然拼读</span>
+                        <span class="task-item" style="color:#666;font-size:11px;">o_e</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 自然拼读</span>
+                        <span class="task-item" style="color:#666;font-size:11px;">u_e</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 自然拼读</span>
+                        <span class="task-item" style="color:#666;font-size:11px;">u_e</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 自然拼读</span>
+                        <span class="task-item" style="color:#666;font-size:11px;">复习</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ Playway 3</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 休息</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>下午</strong><br>语文/数学<br>15 分钟</td>
+                    <td>
+                        <span class="task-item">☐ 四五快读</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 四五快算</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 四五快读</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 四五快算</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 四五快读</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 中文绘本</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 休息</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>晚上</strong><br>阅读 + 练字<br>25 分钟</td>
+                    <td>
+                        <span class="task-item">☐ RAZ 共读</span>
+                        <span class="task-item">☐ 练字</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 共读</span>
+                        <span class="task-item">☐ 练字</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 共读</span>
+                        <span class="task-item">☐ 练字</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 共读</span>
+                        <span class="task-item">☐ 练字</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ RAZ 共读</span>
+                        <span class="task-item">☐ 练字</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 英文绘本</span>
+                        <span class="task-item">☐ 动画</span>
+                    </td>
+                    <td>
+                        <span class="task-item">☐ 休息</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2 class="section-title">✅ 每日详细打卡</h2>
+        <table class="daily-check">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">日期</th>
+                    <th style="width: 16%;">早晨<br>磨耳朵</th>
+                    <th style="width: 16%;">上午<br>主课</th>
+                    <th style="width: 16%;">下午<br>语文/数学</th>
+                    <th style="width: 16%;">晚上<br>阅读 + 练字</th>
+                    <th style="width: 16%;">今日⭐</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left;">周一 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周二 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周三 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周四 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周五 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周六 ____/____</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>☐</td>
+                    <td>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                        <span class="star-box"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">周日 ____/____</td>
+                    <td colspan="5" style="text-align: left; height: 60px;">本周总结：___________________________________________________________</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2 class="section-title">🏆 本周奖励追踪</h2>
+        <table class="daily-check">
+            <tr>
+                <td style="width: 30%; text-align: left; font-weight: bold;">本周获得⭐总数</td>
+                <td style="width: 70%;">
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                    <span class="star-box"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left; font-weight: bold;">本周奖励</td>
+                <td style="text-align: left;">
+                    ☐ 周末看英文动画片 &nbsp;&nbsp;
+                    ☐ 周末去公园玩 &nbsp;&nbsp;
+                    ☐ 小礼物奖励
+                </td>
+            </tr>
+        </table>
+        
+        <div class="notes">
+            <h3>📝 本周学习记录/家长备注</h3>
+            <textarea placeholder="记录孩子的进步、遇到的问题、需要调整的内容..."></textarea>
+        </div>
+        
+        <button class="print-btn" onclick="window.print()">🖨️ 打印打卡表</button>
+    </div>
+</body>
+</html>
